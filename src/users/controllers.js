@@ -92,10 +92,10 @@ const userUpdateController = async (req, res) => {
 
 const userDeleteController = async (req, res) => {
   try {
-    let result = await User.findOne(
-      { email: req.params.email, isDelete: false },
-      { isActive: false }
-    );
+    let result = await User.findOne({
+      email: req.params.email,
+      isDelete: false,
+    });
 
     if (!result) {
       throw new Error404("Data not found");
@@ -103,7 +103,7 @@ const userDeleteController = async (req, res) => {
 
     await User.findOneAndUpdate(
       { email: req.params.email },
-      { isActive: false, isDelete: true }
+      { isDelete: true }
     );
 
     return res.status(204).json(null);
