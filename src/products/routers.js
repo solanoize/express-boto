@@ -14,7 +14,10 @@ const {
   productControllerCreate,
 } = require("./controllers");
 
-const { productValidationCreate } = require("./validations");
+const {
+  productValidationCreate,
+  productValidationUpdate,
+} = require("./validations");
 
 const productRouter = express.Router();
 const PRODUCT_PATH = "/products";
@@ -39,7 +42,7 @@ productRouter.get(
 
 productRouter.put(
   "/:id",
-  [jwtAuthMiddleware, productPermissionUpdate],
+  [jwtAuthMiddleware, productValidationUpdate, productPermissionUpdate],
   productControllerUpdate
 );
 
