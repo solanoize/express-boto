@@ -53,7 +53,6 @@ const userDetailController = async (req, res) => {
       {
         email: req.params.email,
         isDelete: false,
-        isActive: true,
       },
       "-password -isDelete"
     );
@@ -73,7 +72,6 @@ const userUpdateController = async (req, res) => {
     let result = await User.findOne({
       email: req.params.email,
       isDelete: false,
-      isActive: true,
     });
 
     if (!result) {
@@ -81,7 +79,7 @@ const userUpdateController = async (req, res) => {
     }
 
     result = await User.findOneAndUpdate(
-      { email: req.params.email, isDelete: false, isActive: true },
+      { email: req.params.email, isDelete: false },
       res.locals.matchedData,
       { new: true }
     ).select("-password");
@@ -95,7 +93,7 @@ const userUpdateController = async (req, res) => {
 const userDeleteController = async (req, res) => {
   try {
     let result = await User.findOne(
-      { email: req.params.email, isActive: true, isDelete: false },
+      { email: req.params.email, isDelete: false },
       { isActive: false }
     );
 

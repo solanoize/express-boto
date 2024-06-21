@@ -4,13 +4,13 @@ const { validationMiddleware } = require("../utils/middlewares");
 const productValidationCreate = validationMiddleware([
   textField("name"),
   numberField("price"),
-  numberField("stock", 1, 200),
+  numberField("stock"),
 ]);
 
 const productValidationUpdate = validationMiddleware([
   textField("name"),
-  numberField("price", 1, true),
-  numberField("stock", 1, 200, true),
+  numberField("price", true),
+  numberField("stock", true),
 ]);
 
 module.exports = {
